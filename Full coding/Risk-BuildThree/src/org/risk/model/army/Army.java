@@ -13,6 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 package org.risk.model.army;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -79,5 +80,69 @@ public class Army {
 	 */
 	public static void setNumberOfStrength(int noOfStates){
 		Army.numberOfStates = noOfStates;
+	}
+	/**
+	 * This method assigns army to the state object
+	 * @param stateName
+	 * @param armyDetail
+	 */
+	public void addArmyDetail(String stateName, ArmyDetail armyDetail) {
+		if (getClass().equals(Aircraft.class)) {
+			Aircraft aircraft = new Aircraft(stateName);
+			aircraft.setArmyStrength(armyDetail.getAircraft().armyStrength()
+					+ armyStrength());
+			armyDetail.setAircraft(aircraft);
+		} else if (getClass().equals(Artillery.class)) {
+			Artillery artillery = new Artillery(stateName);
+			artillery.setArmyStrength(armyDetail.getArtillery().armyStrength()
+					+ armyStrength());
+			armyDetail.setArtillery(artillery);
+		} else if (getClass().equals(Conscript.class)) {
+			Conscript conscript = new Conscript(stateName);
+			conscript.setArmyStrength(armyDetail.getArtillery().armyStrength()
+					+ armyStrength());
+			armyDetail.setConscript(conscript);
+		} else if (getClass().equals(HeavyPrecisionArtillery.class)) {
+			HeavyPrecisionArtillery heavyPrecisionArtillery = new HeavyPrecisionArtillery(
+					stateName);
+			heavyPrecisionArtillery.setArmyStrength(armyDetail
+					.getHeavyPrecisionArtillery().armyStrength()
+					+ armyStrength());
+			armyDetail.setHeavyPrecisionArtillery(heavyPrecisionArtillery);
+		} else if (getClass().equals(MechanizedInfantry.class)) {
+			MechanizedInfantry mechanizedInfantry = new MechanizedInfantry(
+					stateName);
+			mechanizedInfantry.setArmyStrength(armyDetail
+					.getMechanizedInfantry().armyStrength() + armyStrength());
+			armyDetail.setMechanizedInfantry(mechanizedInfantry);
+		} else if (getClass().equals(NuclearMissile.class)) {
+			NuclearMissile nuclearMissile = new NuclearMissile(stateName);
+			nuclearMissile.setArmyStrength(armyDetail.getNuclearMissile()
+					.armyStrength() + armyStrength());
+			armyDetail.setNuclearMissile(nuclearMissile);
+		} else if (getClass().equals(ProfessionalSoldier.class)) {
+			ProfessionalSoldier professionalSoldier = new ProfessionalSoldier(
+					stateName);
+			professionalSoldier.setArmyStrength(armyDetail
+					.getProfessionalSoldier().armyStrength() + armyStrength());
+			armyDetail.setProfessionalSoldier(professionalSoldier);
+		} else if (getClass().equals(SpecialOperationsSoldier.class)) {
+			SpecialOperationsSoldier specialOperationsSoldier = new SpecialOperationsSoldier(
+					stateName);
+			specialOperationsSoldier.setArmyStrength(armyDetail
+					.getSpecialOperationsSoldier().armyStrength()
+					+ armyStrength());
+			armyDetail.setSpecialOperationsSoldier(specialOperationsSoldier);
+		} else if (getClass().equals(TacticalMissile.class)) {
+			TacticalMissile tacticalMissile = new TacticalMissile(stateName);
+			tacticalMissile.setArmyStrength(armyDetail.getTacticalMissile()
+					.armyStrength() + armyStrength());
+			armyDetail.setTacticalMissile(tacticalMissile);
+		} else if (getClass().equals(Volunteer.class)) {
+			Volunteer volunteer = new Volunteer(stateName);
+			volunteer.setArmyStrength(armyDetail.getVolunteer().armyStrength()
+					+ armyStrength());
+			armyDetail.setVolunteer(volunteer);
+		}
 	}
 }
