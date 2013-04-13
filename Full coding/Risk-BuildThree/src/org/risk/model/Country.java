@@ -12,7 +12,8 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-*/package org.risk.model;
+*/
+package org.risk.model;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -371,7 +372,72 @@ public class Country {
 	 *            : Army object.
 	 */
 	public void addArmyDetail(Army army) {
-		army.addArmyDetail(countryName, armyDetail);
+		if (army.getClass().equals(Aircraft.class)) {
+			Aircraft aircraft = new Aircraft(countryName);
+			aircraft.setArmyStrength(this.getArmyDetail().getAircraft()
+					.armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setAircraft(aircraft);
+		} else if (army.getClass().equals(Artillery.class)) {
+			Artillery artillery = new Artillery(countryName);
+			artillery.setArmyStrength(this.getArmyDetail().getArtillery()
+					.armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setArtillery(artillery);
+		} else if (army.getClass().equals(Conscript.class)) {
+			Conscript conscript = new Conscript(countryName);
+			conscript.setArmyStrength(this.getArmyDetail().getArtillery()
+					.armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setConscript(conscript);
+		} else if (army.getClass().equals(HeavyPrecisionArtillery.class)) {
+			HeavyPrecisionArtillery heavyPrecisionArtillery = new HeavyPrecisionArtillery(
+					countryName);
+			heavyPrecisionArtillery.setArmyStrength(this.getArmyDetail()
+					.getHeavyPrecisionArtillery().armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setHeavyPrecisionArtillery(heavyPrecisionArtillery);
+		} else if (army.getClass().equals(MechanizedInfantry.class)) {
+			MechanizedInfantry mechanizedInfantry = new MechanizedInfantry(
+					countryName);
+			mechanizedInfantry.setArmyStrength(this.getArmyDetail()
+					.getMechanizedInfantry().armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setMechanizedInfantry(mechanizedInfantry);
+		} else if (army.getClass().equals(NuclearMissile.class)) {
+			NuclearMissile nuclearMissile = new NuclearMissile(countryName);
+			nuclearMissile.setArmyStrength(this.getArmyDetail()
+					.getNuclearMissile().armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setNuclearMissile(nuclearMissile);
+		} else if (army.getClass().equals(ProfessionalSoldier.class)) {
+			ProfessionalSoldier professionalSoldier = new ProfessionalSoldier(
+					countryName);
+			professionalSoldier.setArmyStrength(this.getArmyDetail()
+					.getProfessionalSoldier().armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setProfessionalSoldier(professionalSoldier);
+		} else if (army.getClass().equals(SpecialOperationsSoldier.class)) {
+			SpecialOperationsSoldier specialOperationsSoldier = new SpecialOperationsSoldier(
+					countryName);
+			specialOperationsSoldier.setArmyStrength(this.getArmyDetail()
+					.getSpecialOperationsSoldier().armyStrength()
+					+ army.armyStrength());
+			this.armyDetail
+					.setSpecialOperationsSoldier(specialOperationsSoldier);
+		} else if (army.getClass().equals(TacticalMissile.class)) {
+			TacticalMissile tacticalMissile = new TacticalMissile(countryName);
+			tacticalMissile.setArmyStrength(this.getArmyDetail()
+					.getTacticalMissile().armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setTacticalMissile(tacticalMissile);
+		} else if (army.getClass().equals(Volunteer.class)) {
+			Volunteer volunteer = new Volunteer(countryName);
+			volunteer.setArmyStrength(this.getArmyDetail().getVolunteer()
+					.armyStrength()
+					+ army.armyStrength());
+			this.armyDetail.setVolunteer(volunteer);
+		}
 	}
 
 	/**
