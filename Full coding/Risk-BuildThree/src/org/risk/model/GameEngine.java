@@ -13,6 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 package org.risk.model;
 
 import java.lang.reflect.Array;
@@ -65,7 +66,7 @@ public class GameEngine {
 	private ArrayList<Country> myCountryList;
 	private ArrayList<State> myStateList;
 	private ArrayList<Link> myLinkList;
-	private static ArrayList<Country> countryTurnSequence;
+	static ArrayList<Country> countryTurnSequence;
 	private ArmyFactory armyFactory;
 	private Timer timer;
 	private static ArrayList<Country> nextCountryTurn;
@@ -75,7 +76,7 @@ public class GameEngine {
 	static private Game game;
 	static State weakestState;
 	static ArrayList<State> attackingStates;
-
+	private Player player;
 	// private boolean phaseFinalized = false;
 
 	/**
@@ -1598,7 +1599,7 @@ public class GameEngine {
 			int index = country.getCountryIndexByCountryID(countryId,
 					countryArr);
 			country = countryArr.get(index);
-			int countryTurn = country.getCountryTurn();
+			int countryTurn = player.getCountryTurn();
 			if (countryTurn == 5) {
 				country.setTechnology(technology.technologyLevelMedium());
 			} else if (countryTurn == 10) {
@@ -1806,7 +1807,7 @@ public class GameEngine {
 		countryStates = state.getStatesByCountryId(countryID, myStateList);
 		Resource countryResource = country.getResourceOfCountry(countryStates);
 		Logger.logMessage("***************************************************");
-		Logger.logMessage("Turn " + getCountryTurn(countryID));
+		Logger.logMessage("Turn " + player.getCountryTurn(countryID));
 		Logger.logMessage("***************************************************");
 		Logger.logMessage("---------------------------------------------------");
 		Logger.logMessage(country.getCountryName());
@@ -1881,24 +1882,6 @@ public class GameEngine {
 		myCountryList.set(countryIndex, country);
 		map.setMyCountryList(myCountryList);
 		updateMap();
-	}
-
-	/**
-	 * The method returns the Country turn
-	 * 
-	 * @param countryId
-	 *            represents the countryID
-	 * @return returns int value which represents the country turn
-	 */
-	private int getCountryTurn(int countryId) {
-		int countryTurn = 0;
-		for (int i = 0; i < countryTurnSequence.size(); i++) {
-			if (countryId == countryTurnSequence.get(i).getCountryID()) {
-				countryTurn = i + 1;
-				break;
-			}
-		}
-		return countryTurn;
 	}
 
 	/**

@@ -12,7 +12,9 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-*/package org.risk.model;
+*/
+
+package org.risk.model;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -63,8 +65,8 @@ public class Country {
 	private ArmyDetail armyDetail;
 	private int productionNumber;
 	private String productionType;
-	private int countryTurn = 1;
-	
+	Player player = new Player(1);
+
 	/**
 	 * Default Constructor
 	 */
@@ -380,7 +382,7 @@ public class Country {
 	 * @return : Turn of country
 	 */
 	public int getCountryTurn() {
-		return this.countryTurn;
+		return this.player.getCountryTurn();
 	}
 
 	/**
@@ -390,7 +392,7 @@ public class Country {
 	 *            : Turn of country
 	 */
 	public void setCountryTurn(int countryTurn) {
-		this.countryTurn = countryTurn;
+		this.player.setCountryTurn(countryTurn);
 	}
 
 	/**
